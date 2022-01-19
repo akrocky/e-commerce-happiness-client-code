@@ -1,5 +1,6 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@mui/icons-material";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { sliderItems } from "../../pages/Data";
 import { mobile } from "../../Responsive";
@@ -12,6 +13,9 @@ const Container = styled.div`
   margin-top: 35px;
   position: relative;
   overflow: hidden;
+  @media (max-width: 1010px) {
+    display: none;
+  }
   ${mobile({ display: "none" })}
 `;
 const Arrow = styled.div`
@@ -95,35 +99,14 @@ const Slider = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Description>{item.desc}</Description>
-              <Button>Show Now</Button>
+              <Button>
+                <Link style={{ textDecoration: "none" }} to="/products/women">
+                  Show Now
+                </Link>
+              </Button>
             </InfoContainer>
           </Slide>
         ))}
-
-        {/* <Slide bg="fcf1ed">
-          <ImageContainer>
-            <img src="https://i.ibb.co/cr7ZD4b/slider-image.png" alt="" />
-          </ImageContainer>
-          <InfoContainer>
-            <Title>Winter Sale</Title>
-            <Description>
-              Don't compromise on style! Get flat 30% off for new arrival.
-            </Description>
-            <Button>Show Now</Button>
-          </InfoContainer>
-        </Slide>
-        <Slide bg="fbf0f4">
-          <ImageContainer>
-            <img src="https://i.ibb.co/cr7ZD4b/slider-image.png" alt="" />
-          </ImageContainer>
-          <InfoContainer>
-            <Title>Popular Sale</Title>
-            <Description>
-              Don't compromise on style! Get flat 30% off for new arrival.
-            </Description>
-            <Button>Show Now</Button>
-          </InfoContainer>
-        </Slide> */}
       </Wrapper>
       <Arrow direction="right" onClick={() => handleClick("right")}>
         <ArrowRightOutlined />

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { login } from "../redux/apiCalls";
 import { mobile } from "../Responsive";
@@ -53,10 +54,10 @@ const Button = styled.button`
     cursor: not-allowed;
   }
 `;
-const Link = styled.a`
+const Linkf = styled.a`
   margin: 5px 0px;
   font-size: 12px;
-  text-decoration: underline;
+
   cursor: pointer;
 `;
 const Error = styled.span`
@@ -69,10 +70,14 @@ const Login = () => {
 
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state?.user);
+  let navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   const handleClick = (e) => {
     e.preventDefault();
 
     login(dispatch, { username, password });
+    navigate(from);
   };
   return (
     <Container>
@@ -93,8 +98,9 @@ const Login = () => {
             LOGIN
           </Button>
           {error && <Error>Something Wrong...</Error>}
-          <Link>DO NOT REMEMBER THE PASSWORD?</Link>
-          <Link>CRATE A NEW ACCOUNT</Link>
+          <Linkf>DO NOT REMEMBER THE PASSWORD?</Linkf>
+
+          <Link to="/register">CRATE A NEW ACCOUNT</Link>
         </Form>
       </Wrapper>
     </Container>

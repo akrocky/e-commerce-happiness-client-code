@@ -1,16 +1,16 @@
 import axios from "axios";
 
 
-const BASE_URL="http://localhost:5000/api/"
-// let TOKEN;
-// if(localStorage.getItem("persist:root")){
-// TOKEN=JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accesstoken;
-// }
+const BASE_URL="https://dry-wildwood-19907.herokuapp.com/api/";
+const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
+const currentUser = user && JSON.parse(user).currentUser;
+const TOKEN = currentUser?.accessToken;
+
 
 export const publicRequest=axios.create({
 baseURL:BASE_URL
 })
 export const userRequest=axios.create({
 baseURL:BASE_URL,
-header:{token:`Bearer "km"`}
+header:{token:`Bearer ${TOKEN}`}
 })

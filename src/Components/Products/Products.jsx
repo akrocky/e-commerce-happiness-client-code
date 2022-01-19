@@ -21,8 +21,8 @@ const Products = ({ cat, filters, sort }) => {
       try {
         const res = await axios.get(
           cat
-            ? `http://localhost:5000/api/products?category=${cat}`
-            : "http://localhost:5000/api/products"
+            ? `https://dry-wildwood-19907.herokuapp.com/api/products?category=${cat}`
+            : "https://dry-wildwood-19907.herokuapp.com/api/products"
         );
         setProducts(res.data);
       } catch (err) {
@@ -74,11 +74,12 @@ const Products = ({ cat, filters, sort }) => {
         ? filterProducts?.map((item) => <Product key={item._id} item={item} />)
         : products?.map((item) => <Product key={item._id} item={item} />)}
 
-      {!filterProducts?.length && (
-        <span style={{ color: "red", textAlign: "center" }}>
-          sorry! this item not available
-        </span>
-      )}
+      {!filterProducts?.length ||
+        (!Products?.length && (
+          <span style={{ color: "red", textAlign: "center" }}>
+            sorry! this item not available
+          </span>
+        ))}
     </Container>
   );
 };

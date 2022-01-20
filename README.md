@@ -1,4 +1,4 @@
-# E-commerce Wesite--Happiness
+# E-commerce Website--Happiness
 
 ##### To visit live website [Click here](https://happiness-emcommerz.web.app/).
 
